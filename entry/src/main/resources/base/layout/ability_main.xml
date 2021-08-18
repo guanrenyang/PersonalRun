@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:alignment="center"
+    ohos:orientation="vertical"
+    ohos:background_element="$graphic:background_ability_main">
+
+    <TickTimer
+        ohos:id="$+id:Tick_Timer"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text_size="100fp"
+        ohos:text_color="#0000FF"
+        ohos:scrollbar_background_color="#19000000"
+        ohos:text_alignment="center"
+        ohos:layout_alignment="center"/>
+    <Text
+        ohos:id="$+id:timer"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text_size="60fp"
+        ohos:text_color="#FFFFFF"
+        ohos:text_alignment="center"
+        ohos:layout_alignment="center"
+        ohos:background_element="$graphic:text_timer_element"
+        ohos:text="00:00:00"
+        ohos:bottom_margin="30vp"/>
+    <Text
+        ohos:id="$+id:Run_Type"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text="Run Type"
+        ohos:text_alignment="center"
+        ohos:layout_alignment="center"
+        ohos:text_color="#FFFFFF"
+        ohos:background_element="$graphic:text_runtype_element"
+        ohos:text_size="50fp"/>
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:alignment="horizontal_center"
+        ohos:orientation="vertical"
+        ohos:top_margin="30vp"
+       >
+        <Button
+            ohos:id="$+id:Start"
+            ohos:width="160vp"
+            ohos:height="160vp"
+            ohos:text_font="sans-serif"
+            ohos:text_size="27fp"
+            ohos:text_color="#FFFFFF"
+            ohos:background_element="$graphic:start_button_element"
+            ohos:text="START"
+            ohos:bottom_margin="30vp"/>
+
+        <Button
+            ohos:id="$+id:Pause"
+            ohos:width="160vp"
+            ohos:height="160vp"
+            ohos:text_size="27fp"
+            ohos:text_color="#FFFFFF"
+            ohos:background_element="$graphic:pause_button_element"
+            ohos:text="PAUSE"/>
+
+    </DirectionalLayout>
+
+</DirectionalLayout>

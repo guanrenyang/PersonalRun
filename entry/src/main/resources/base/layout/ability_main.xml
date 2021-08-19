@@ -53,7 +53,7 @@
             ohos:text_size="27fp"
             ohos:text_color="#FFFFFF"
             ohos:background_element="$graphic:start_button_element"
-            ohos:text="START"
+            ohos:text="开始"
             ohos:bottom_margin="30vp"/>
 
         <Button
@@ -63,7 +63,7 @@
             ohos:text_size="27fp"
             ohos:text_color="#FFFFFF"
             ohos:background_element="$graphic:pause_button_element"
-            ohos:text="PAUSE"/>
+            ohos:text="暂停"/>
 
     </DirectionalLayout>
 

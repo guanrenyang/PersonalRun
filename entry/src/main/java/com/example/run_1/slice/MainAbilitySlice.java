@@ -10,6 +10,10 @@ import ohos.agp.components.TickTimer;
 import ohos.agp.utils.Color;
 import ohos.agp.window.service.Window;
 import ohos.app.Context;
+import ohos.app.dispatcher.TaskDispatcher;
+import ohos.app.dispatcher.task.Revocable;
+import ohos.app.dispatcher.task.TaskPriority;
+import ohos.hiviewdfx.HiLog;
 import ohos.utils.system.SystemCapability;
 import ohos.vibrator.agent.VibratorAgent;
 import ohos.vibrator.bean.VibrationPattern;
@@ -84,10 +88,9 @@ public class MainAbilitySlice extends AbilitySlice  {
         // 定义保存一次训练计划的数据结构RunUnitList
         run_unit_list = new RunUnitList();
 
-        for (long i = 30*MINUTE;i>0;){
+        for (long i = 30*MINUTE;i>0;i-=3*MINUTE){
             run_unit_list.addUnit(2*MINUTE, "慢跑");
-            run_unit_list.addUnit(1*MINUTE,"快走");
-            i-=3*MINUTE;
+            run_unit_list.addUnit(1*MINUTE, "快走");
         }
 
         // 1. 找到组件对象
@@ -166,14 +169,21 @@ public class MainAbilitySlice extends AbilitySlice  {
         }
         if(current_time - start_time >= run_unit_list.getTime(current_unit)){ // 减去振动时常
 
-            // 更新跑步姿势或者结束的时候都需要 振动
-            if (!vibratorList.isEmpty()) {
-                // 获取振动器id
-                int vibratorId = vibratorList.get(0);
+            TaskDispatcher globalTaskDispatcher = getGlobalTaskDispatcher(TaskPriority.DEFAULT);
+             globalTaskDispatcher.syncDispatch(new Runnable() {
+                @Override
+                public void run() {
+                    // 更新跑步姿势或者结束的时候都需要 振动
+                    if (!vibratorList.isEmpty()) {
+                        // 获取振动器id
+                        int vibratorId = vibratorList.get(0);
 
-                // 创建指定时常的一次性振动
-                boolean vibrateResult = vibratorAgent.startOnce(vibratorId, vibratorTiming);
-            }
+                        // 创建指定时常的一次性振动
+                        boolean vibrateResult = vibratorAgent.startOnce(vibratorId, vibratorTiming);
+                    }
+                }
+            });
+
 
             current_unit++;
             start_time = String2Long(tickTimer.getText());
